@@ -1,17 +1,47 @@
+import React, { useState } from 'react';
 import './App.css';
-import '.button.css';
+import Header from './components/Header';
+import Table from './components/Table';
 
 function App() {
+  const [showTable, setShowTable] = useState(true); // Initial state: show table
+
+  const toggleTable = () => setShowTable(!showTable); // Function to toggle visibility
+
+  const tableData = [
+    { id: 1, name: 'Apple', price: 1.99 },
+    { id: 2, name: 'Banana', price: 0.79 },
+    { id: 3, name: 'Orange', price: 1.25 },
+  ];
 
   return (
-    <>
-        <Button buttonType={''} buttontext ={'Normal'}/>
-        
-        
-        <Button buttonType={''} buttontext ={'Success'}/>
-
-    </>
-  )
+    <div>
+      <Header /> {/* Include Header component */}
+      <button onClick={toggleTable}>
+        {showTable ? 'Hide Table' : 'Show Table'}
+      </button>
+      {showTable && ( // Conditionally render the table
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>${item.price.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
