@@ -1,26 +1,22 @@
+// SearchBar.jsx
 import React, { useState } from 'react';
-import Table from './Table';
 
-function SearchBar({ transactions }) {
+function SearchBar({ handleSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
+    handleSearch(e.target.value);
   };
-
-  const filteredTransactions = transactions.filter((transaction) =>
-    transaction.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Search by category"
+        placeholder="Search by details"
         value={searchTerm}
         onChange={handleChange}
       />
-      <Table transactions={filteredTransactions} />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-// AddData.jsx
 import React, { useState } from 'react';
 
 function AddData({ addTransaction }) {
@@ -6,7 +5,7 @@ function AddData({ addTransaction }) {
     date: '',
     details: '',
     category: '',
-    amount: '',
+    amount: 0,
   });
 
   const handleChange = (e) => {
@@ -16,26 +15,22 @@ function AddData({ addTransaction }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!newTransaction.date || !newTransaction.details || !newTransaction.category || !newTransaction.amount) {
-      alert('Please fill in all fields');
-      return;
-    }
     addTransaction(newTransaction);
     setNewTransaction({
       date: '',
       details: '',
       category: '',
-      amount: '',
+      amount: 0,
     });
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="date" name="date" value={newTransaction.date} onChange={handleChange} required />
-        <input type="text" name="details" value={newTransaction.details} onChange={handleChange} placeholder="Details" required />
-        <input type="text" name="category" value={newTransaction.category} onChange={handleChange} placeholder="Category" required />
-        <input type="number" name="amount" value={newTransaction.amount} onChange={handleChange} placeholder="Amount" required />
+        <input type="date" name="date" value={newTransaction.date} onChange={handleChange} />
+        <input type="text" name="details" value={newTransaction.details} onChange={handleChange} />
+        <input type="text" name="category" value={newTransaction.category} onChange={handleChange} />
+        <input type="number" name="amount" value={newTransaction.amount} onChange={handleChange} />
         <button type="submit">Add Data</button>
       </form>
     </div>

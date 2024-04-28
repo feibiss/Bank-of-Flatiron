@@ -13,16 +13,26 @@ function App() {
     { date: '2024-04-25', details: 'Phone Bill', category: 'Utilities', amount: 60 },
   ]);
 
+  const [filteredTransactions, setFilteredTransactions] = useState(transactions);
+
   const addTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
+    setFilteredTransactions([...filteredTransactions, newTransaction]);
+  };
+
+  const handleSearch = (searchTerm) => {
+    const filtered = transactions.filter((transaction) =>
+      transaction.details.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredTransactions(filtered);
   };
 
   return (
     <div>
       <Header />
-      <SearchBar transactions={transactions} />
+      <SearchBar handleSearch={handleSearch} />
       <AddData addTransaction={addTransaction} />
-      <Table transactions={transactions} />
+      <Table transactions={filteredTransactions} />
     </div>
   );
 }
