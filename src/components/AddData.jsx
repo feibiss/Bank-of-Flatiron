@@ -25,12 +25,12 @@ function AddData({ addTransaction }) {
   };
 
   return (
-    <div>
+    <div className="add-data">
       <form onSubmit={handleSubmit}>
-        <input type="date" name="date" value={newTransaction.date} onChange={handleChange} />
-        <input type="text" name="details" value={newTransaction.details} onChange={handleChange} />
-        <input type="text" name="category" value={newTransaction.category} onChange={handleChange} />
-        <input type="number" name="amount" value={newTransaction.amount} onChange={handleChange} />
+        <input type="date" name="date" value={newTransaction.date} onChange={handleChange} placeholder="Date" />
+        <input type="text" name="details" value={newTransaction.details} onChange={handleChange} placeholder="Details" />
+        <input type="text" name="category" value={newTransaction.category} onChange={handleChange} placeholder="Category" />
+        <input type="number" name="amount" value={newTransaction.amount === 0 ? '' : newTransaction.amount} onChange={handleChange} placeholder="Amount" />
         <button type="submit">Add Data</button>
       </form>
     </div>

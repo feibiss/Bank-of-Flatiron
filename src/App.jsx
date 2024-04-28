@@ -1,16 +1,16 @@
-// App.jsx
 import React, { useState } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import AddData from './components/AddData';
 import Table from './components/Table';
+import './App.css';
 
 function App() {
   const [transactions, setTransactions] = useState([
-    { date: '2024-04-28', details: 'Groceries', category: 'Food', amount: 50 },
-    { date: '2024-04-27', details: 'Internet Bill', category: 'Utilities', amount: 80 },
-    { date: '2024-04-26', details: 'Dinner', category: 'Food', amount: 30 },
-    { date: '2024-04-25', details: 'Phone Bill', category: 'Utilities', amount: 60 },
+    { date: '2024-04-28', details: 'Netflix', category: 'Entertainment', amount: 2450 },
+    { date: '2024-04-27', details: 'House mortgage', category: 'Loan', amount: 1200000 },
+    { date: '2024-04-26', details: 'New phone', category: 'Personal', amount: 94559 },
+    { date: '2024-04-25', details: 'Uber', category: 'Utilities', amount: 450 },
   ]);
 
   const [filteredTransactions, setFilteredTransactions] = useState(transactions);
@@ -28,12 +28,12 @@ function App() {
   };
 
   return (
-    <div>
-      <Header />
-      <SearchBar handleSearch={handleSearch} />
-      <AddData addTransaction={addTransaction} />
-      <Table transactions={filteredTransactions} />
-    </div>
+  <div className="container">
+    <Header className="header" />
+    <SearchBar className="search" handleSearch={handleSearch} />
+    <AddData className="add" addTransaction={addTransaction} />
+    <Table className="table" transactions={filteredTransactions} />
+  </div>
   );
 }
 
