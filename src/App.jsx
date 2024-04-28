@@ -1,45 +1,23 @@
 import React, { useState } from 'react';
-import './App.css';
 import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import AddData from './components/AddData';
 import Table from './components/Table';
+import './App.css';
 
 function App() {
-  const [showTable, setShowTable] = useState(true); // Initial state: show table
+  const [transactions, setTransactions] = useState([]);
 
-  const toggleTable = () => setShowTable(!showTable); // Function to toggle visibility
-
-  const tableData = [
-    { id: 1, name: 'Apple', price: 1.99 },
-    { id: 2, name: 'Banana', price: 0.79 },
-    { id: 3, name: 'Orange', price: 1.25 },
-  ];
+  const addTransaction = (newTransaction) => {
+    setTransactions([...transactions, newTransaction]);
+  };
 
   return (
     <div>
-      <Header /> {/* Include Header component */}
-      <button onClick={toggleTable}>
-        {showTable ? 'Hide Table' : 'Show Table'}
-      </button>
-      {showTable && ( // Conditionally render the table
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>${item.price.toFixed(2)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      <Header />
+      <SearchBar transactions={transactions} />
+      <AddData addTransaction={addTransaction} />
+      <Table transactions={transactions} />
     </div>
   );
 }
